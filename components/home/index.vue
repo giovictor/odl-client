@@ -22,7 +22,7 @@
     <section>
       <b-container>
         <b-row align-v="center" align-h="center">
-          <b-col cols="4">
+          <b-col cols="5">
             <div class="quote">
               <img id="upper-leaf-quote" src="~/assets/images/upper-leaf-quote.png"/>
               <p>Fitter</p>
@@ -31,7 +31,7 @@
               <img id="lower-leaf-quote" src="~/assets/images/lower-leaf-quote.png"/>
             </div>
             <div class="description">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Get healthier in your everyday life.</p>
             </div>
             <b-button pill class="cta" href="#" size="lg">Get In Touch</b-button>
           </b-col>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import BackgroundObject from '@/components/home/backgroundObject'
+import BackgroundObject from '@/components/component/backgroundObject'
 import Navbar from '@/components/home/navbar'
 
 export default {
@@ -64,11 +64,11 @@ export default {
     position: relative;
   }
 
-  header {
+  #home header {
     padding-top: 33px;
   }
 
-  section, .description, .cta {
+  #home section, .description, .cta {
     margin-top: 15px;
   }
 
@@ -105,14 +105,14 @@ export default {
 
   .description p {
     color: #362f2d;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .cta {
     text-transform: uppercase;
     background-color: #f6961e;
     border-color: #f6961e;
-    font-size:15px;
+    font-size: 15px;
     letter-spacing: 0.24em;
     font-weight:700;
     padding: 10px 20px;
