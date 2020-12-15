@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <a href="#" class="link" v-for="(section, index) in sections" :key="index">{{section.name}}</a>
+    <a href="#" class="link" v-for="(section, index) in sections" :key="index" v-scroll-to="section.path">{{section.name}}</a>
   </nav>
 </template>
 
@@ -11,19 +11,19 @@ export default {
     return {
       sections: [
         {
-          path: "'#home'",
+          path: "#home",
           name: "Home"
         },
         {
-          path: "'#about'",
+          path: "#about",
           name: "About"
         },
         {
-          path: "'#gallery'",
+          path: "#gallery",
           name: "Gallery"
         },
         {
-          path: "'#contact'",
+          path: "#contact",
           name: "Contact"
         }
       ]
