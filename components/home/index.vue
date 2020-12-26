@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <div class="backgroundObjects">
-      <background-object :src="require(`~/assets/images/strawberry.png`)" top="187px" left="0"></background-object>
+      <background-object :src="require(`~/assets/images/strawberry.png`)" top="187px" left="-20px"></background-object>
       <background-object :src="require(`~/assets/images/celery.png`)" top="0" left="504px"></background-object>
       <background-object :src="require(`~/assets/images/cherry.png`)" top="45px" right="0"></background-object>
       <background-object :src="require(`~/assets/images/herb.png`)" bottom="0" left="329px"></background-object>
@@ -33,7 +33,7 @@
             <div class="description">
               <p>Get healthier in your everyday life.</p>
             </div>
-            <b-button pill class="cta" href="#" size="lg">Get In Touch</b-button>
+            <b-button pill class="cta" href="#" size="lg" v-scroll-to="'#contact'">Get In Touch</b-button>
           </b-col>
           <b-col cols="4">
             <img src="~/assets/images/veggie-bowl.png"/>
@@ -75,12 +75,12 @@ export default {
   .quote {
     font-size: 50px;
     text-transform: uppercase;
-    font-weight: 700;
     position: relative;
   }
 
   .quote p {
     margin: 0;
+    font-family: 'Gretaros';
   }
 
   .quote p:nth-of-type(1), .quote p:nth-of-type(2) {
@@ -99,13 +99,14 @@ export default {
 
   #lower-leaf-quote {
     position: absolute;
-    top: 147px;
-    left: 208px;
+    top: 140px;
+    left: 242px;
   }
 
   .description p {
     color: #362f2d;
     font-size: 14px;
+    font-weight: 600;
   }
 
   .cta {

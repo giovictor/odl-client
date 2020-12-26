@@ -24,6 +24,10 @@
           <img :src="require(`~/assets/images/landscape.jpg`)"/>
           <div class="gallery-image-text">landscape</div>
         </div>
+        <div class="gallery-image">
+          <img :src="require(`~/assets/images/products.jpg`)"/>
+          <div class="gallery-image-text">products</div>
+        </div>
       </b-row>
     </b-container>
   </div>
@@ -50,6 +54,11 @@ export default {
     margin-right: 10px;
     position: relative;
     height: 100%;
+  }
+
+  .gallery-image img {
+    height: 241px;
+    width: 241px;
   }
 
   .gallery-image-text {

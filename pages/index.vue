@@ -3,6 +3,7 @@
     <home></home>
     <about></about>
     <gallery></gallery>
+    <contact></contact>
   </main>
 </template>
 
@@ -10,12 +11,14 @@
 import Home from '@/components/home'
 import About from '@/components/about'
 import Gallery from '@/components/gallery'
+import Contact from '@/components/contact'
 
 export default {
   components: {
     Home,
     About,
-    Gallery
+    Gallery,
+    Contact
   }
 }
 </script>

@@ -23,14 +23,14 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800;&display=swap' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Charmonman&display=swap' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap' },
     ]
   },
   /*
   ** Global CSS
   */
   css: [
+    '~layouts/styles.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -57,7 +57,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    'vue-scrollto/nuxt',
+    ['vue-scrollto/nuxt', { duration: 800 }]
   ],
   /*
   ** Axios module configuration

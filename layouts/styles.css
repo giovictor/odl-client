@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Gretaros';
+  src: url(~assets/fonts/Gretaros-Regular.ttf)
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
