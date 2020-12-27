@@ -209,7 +209,7 @@ export default {
     border-color: #89b83e;
   }
 
-  input[type="text"], input[type="email"], textarea {
+  input, textarea {
     font-size: 14px !important;
     background-color: #ebebeb !important;
   }
