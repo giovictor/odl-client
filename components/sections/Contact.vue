@@ -6,14 +6,13 @@
         <div cols="12" class="contactFormHeader">
           <p>Get in touch with Us</p>
         </div>
-        <b-form @submit.prevent="sendInquiry" data-netlify="true">
+        <b-form @submit.prevent="sendInquiry" netlify>
           <b-form-group
             label="Name:"
           >
             <b-form-input
               v-model="contactForm.name"
               type="text"
-              name="name"
               placeholder="Your name or your business name"
               @input="clearMessage"
             ></b-form-input>
@@ -24,7 +23,6 @@
             <b-form-input
               v-model="contactForm.email"
               type="text"
-              name="email"
               @input="clearMessage"
             ></b-form-input>
           </b-form-group>
@@ -34,7 +32,6 @@
             <b-form-input
               v-model="contactForm.contact_no"
               type="text"
-              name="contact_no"
               @input="clearMessage"
             ></b-form-input>
           </b-form-group>
@@ -47,7 +44,6 @@
               v-model="contactForm.preferred_mode_of_communication"
               :options="preferred_mode_of_communications"
               :aria-describedby="ariaDescribedby"
-              name="preferred_mode_of_communication"
               @change="clearMessage"
             ></b-form-radio-group>
           </b-form-group>
@@ -58,7 +54,6 @@
               v-model="contactForm.message"
               rows="3"
               max-rows="6"
-              name="message"
               @input="clearMessage"
             ></b-form-textarea>
           </b-form-group>
@@ -101,6 +96,11 @@ export default {
       isSubmitting: false
     }
   },
+  computed: {
+    subject() {
+      return `${this.contactForm.name} sent you a message for Orlando's Des Legumes`
+    }
+  },
   methods: {
     encode(data) {
       return Object.keys(data).map(key =>
@@ -121,7 +121,7 @@ export default {
     },
     sendInquiry() {
       this.isSubmitting = true
-      this.$axios.post('/', this.encode({ 'form-name': 'inquiries', ...this.contactForm }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded'  } })
+      this.$axios.post('/', this.encode({ 'form-name': 'inquiries', 'subject': this.subject, ...this.contactForm }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded'  } })
       .then(() => {
         this.isSubmitting = false
         this.contactFormMessage = { color: 'success', message: 'Message was submitted. We will get back to you on your preferred mode of communication. Thank you for reaching out!' }
