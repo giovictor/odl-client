@@ -11,10 +11,10 @@
       <b-container>
         <b-row align-v="center" align-h="center">
           <b-col cols="4">
-            <img src="~/assets/images/logo.png"/>
+            <img src="~/assets/images/odl-logo.png" class="headerlogo"/>
           </b-col>
           <b-col cols="4">
-            <navbar></navbar>
+            <navbar mode="header"></navbar>
           </b-col>
         </b-row>
       </b-container>
@@ -46,7 +46,7 @@
 
 <script>
 import BackgroundObject from '@/components/component/backgroundObject'
-import Navbar from '@/components/home/navbar'
+import Navbar from '@/components/component/navbar'
 
 export default {
   name: 'Home',
@@ -70,6 +70,11 @@ export default {
 
   #home section, .description, .cta {
     margin-top: 15px;
+  }
+
+  .headerlogo {
+    width: 77px;
+    height: 78px;
   }
 
   .quote {
