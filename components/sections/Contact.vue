@@ -6,7 +6,7 @@
         <div cols="12" class="contactFormHeader">
           <p>Get in touch with Us</p>
         </div>
-        <b-form name="inquiries" @submit.prevent="sendInquiry" data-netlify="true" action="/">
+        <b-form name="inquiries" @submit="sendInquiry" data-netlify="true" action="/">
           <b-form-group
             label="Name:"
           >
@@ -124,7 +124,8 @@ export default {
         }
       })
     },
-    sendInquiry() {
+    sendInquiry(event) {
+      event.preventDefault()
       this.isSubmitting = true
       this.$axios.post('/', this.encode({ 'form-name': 'inquiries', 'subject': this.subject, ...this.contactForm }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded'  } })
       .then(() => {
