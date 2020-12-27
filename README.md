@@ -1,8 +1,7 @@
-# odl-client
+## Orlando's Des Legumes Client
+Orlando's Des Legumes client side made using Nuxt (Vue.js).
 
 ## Build Setup
-
-```bash
 # install dependencies
 $ npm install
 
@@ -15,6 +14,3 @@ $ npm run start
 
 # generate static project
 $ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
