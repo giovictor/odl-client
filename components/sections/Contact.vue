@@ -6,13 +6,14 @@
         <div cols="12" class="contactFormHeader">
           <p>Get in touch with Us</p>
         </div>
-        <b-form @submit.prevent="sendInquiry" netlify>
+        <b-form name="inquiries" @submit.prevent="sendInquiry" data-netlify="true" action="/">
           <b-form-group
             label="Name:"
           >
             <b-form-input
               v-model="contactForm.name"
               type="text"
+              name="name"
               placeholder="Your name or your business name"
               @input="clearMessage"
             ></b-form-input>
@@ -23,6 +24,7 @@
             <b-form-input
               v-model="contactForm.email"
               type="text"
+              name="email"
               @input="clearMessage"
             ></b-form-input>
           </b-form-group>
@@ -32,6 +34,7 @@
             <b-form-input
               v-model="contactForm.contact_no"
               type="text"
+              name="contact_no"
               @input="clearMessage"
             ></b-form-input>
           </b-form-group>
@@ -44,6 +47,7 @@
               v-model="contactForm.preferred_mode_of_communication"
               :options="preferred_mode_of_communications"
               :aria-describedby="ariaDescribedby"
+              name="preferred_mode_of_communication"
               @change="clearMessage"
             ></b-form-radio-group>
           </b-form-group>
@@ -54,6 +58,7 @@
               v-model="contactForm.message"
               rows="3"
               max-rows="6"
+              name="message"
               @input="clearMessage"
             ></b-form-textarea>
           </b-form-group>
