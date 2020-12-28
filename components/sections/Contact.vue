@@ -127,16 +127,13 @@ export default {
     },
     sendInquiry() {
       this.isSubmitting = true
-      console.log('sendInquiry method triggered!')
       this.$axios.post('/contact', this.encode({ 'form-name': 'inquiries', 'subject': this.subject, ...this.contactForm }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded'  } })
       .then(() => {
-        console.log('AJAX submit worked!')
         this.isSubmitting = false
         this.contactFormMessage = { color: 'success', message: 'Message was submitted. We will get back to you on your preferred mode of communication. Thank you for reaching out!' }
         this.resetFields()
       })
       .catch(err => {
-        console.log('error on AJAX submit')
         console.log(err)
         this.isSubmitting = false
         this.contactFormMessage = { color: 'danger', message: 'There was an error submitting your message.' }
