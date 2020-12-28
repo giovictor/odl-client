@@ -6,7 +6,8 @@
         <div cols="12" class="contactFormHeader">
           <p>Get in touch with Us</p>
         </div>
-        <b-form name="inquiries" @submit="sendInquiry" data-netlify="true" method="POST" action="/#contact">
+        <b-form name="inquiries" @submit.prevent="sendInquiry" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" action="/contact">
+          <input type="hidden" name="form-name" value="inquiries" />
           <b-form-group
             label="Name:"
           >
@@ -124,16 +125,18 @@ export default {
         }
       })
     },
-    sendInquiry(event) {
-      event.preventDefault()
+    sendInquiry() {
       this.isSubmitting = true
-      this.$axios.post('/#contact', this.encode({ 'form-name': 'inquiries', 'subject': this.subject, ...this.contactForm }), { headers: { 'Accept': 'application/x-www-form-urlencoded', 'Content-Type': 'application/x-www-form-urlencoded'  } })
+      console.log('sendInquiry method triggered!')
+      this.$axios.post('/contact', this.encode({ 'form-name': 'inquiries', 'subject': this.subject, ...this.contactForm }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded'  } })
       .then(() => {
+        console.log('AJAX submit worked!')
         this.isSubmitting = false
         this.contactFormMessage = { color: 'success', message: 'Message was submitted. We will get back to you on your preferred mode of communication. Thank you for reaching out!' }
         this.resetFields()
       })
       .catch(err => {
+        console.log('error on AJAX submit')
         console.log(err)
         this.isSubmitting = false
         this.contactFormMessage = { color: 'danger', message: 'There was an error submitting your message.' }
