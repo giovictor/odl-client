@@ -1,19 +1,19 @@
 <template>
   <div id="home">
     <div class="backgroundObjects">
-      <background-object :src="require(`~/assets/images/strawberry.png`)" top="187px" left="-20px"></background-object>
-      <background-object :src="require(`~/assets/images/celery.png`)" top="0" left="504px"></background-object>
-      <background-object :src="require(`~/assets/images/cherry.png`)" top="45px" right="0"></background-object>
-      <background-object :src="require(`~/assets/images/herb.png`)" bottom="0" left="329px"></background-object>
-      <background-object :src="require(`~/assets/images/broccoli.png`)" bottom="54px" right="0"></background-object>
+      <background-object id="strawberry" :src="require(`~/assets/images/strawberry.png`)" top="187px" left="-20px"></background-object>
+      <background-object id="celery" :src="require(`~/assets/images/celery.png`)" top="0" left="37%"></background-object>
+      <background-object id="cherry" :src="require(`~/assets/images/cherry.png`)" top="45px" right="0"></background-object>
+      <background-object id="herb" :src="require(`~/assets/images/herb.png`)" bottom="0" left="24%"></background-object>
+      <background-object id="broccoli" :src="require(`~/assets/images/broccoli.png`)" bottom="54px" right="0"></background-object>
     </div>
     <header>
       <b-container>
         <b-row align-v="center" align-h="center">
-          <b-col cols="4">
+          <b-col lg="4" md="3">
             <img src="~/assets/images/odl-logo.png" class="headerlogo"/>
           </b-col>
-          <b-col cols="4">
+          <b-col lg="5" md="6">
             <navbar mode="header"></navbar>
           </b-col>
         </b-row>
@@ -127,5 +127,24 @@ export default {
   .cta:hover {
     background-color: #89b83e;
     border-color: #89b83e;
+  }
+
+  @media screen and (max-width: 991px) {
+    #celery {
+      left: 5% !important;
+    }
+
+    .quote {
+      font-size: 45px;
+    }
+
+    #upper-leaf-quote {
+      top: -23px;
+    }
+
+    #lower-leaf-quote {
+      top: 130px;
+      left: 218px;
+    }
   }
 </style>

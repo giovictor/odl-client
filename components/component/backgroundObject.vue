@@ -1,11 +1,12 @@
 <template>
-  <img class="backgroundObject" :src="src" :style="backgroundObjectPositions">
+  <img :id="id" class="backgroundObject" :src="src" :style="backgroundObjectPositions">
 </template>
 
 <script>
 export default {
   name: 'BackgroundObject',
   props: {
+    id: { type: String, required: true },
     src: { type: String, required: true },
     left: { default: 0 },
     right: { default: 0 },

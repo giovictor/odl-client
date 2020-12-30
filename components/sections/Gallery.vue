@@ -1,7 +1,7 @@
 <template>
   <div id="gallery">
     <b-container>
-      <b-row align-h="center" align-v="center" class="gallery-row">
+      <div class="gallery-row">
         <div class="gallery-image">
           <img :src="require(`~/assets/images/delivery.jpg`)"/>
           <div class="gallery-image-text">delivery</div>
@@ -14,8 +14,6 @@
           <img :src="require(`~/assets/images/farm.jpg`)"/>
           <div class="gallery-image-text">farm</div>
         </div>
-      </b-row>
-      <b-row align-h="center" align-v="center" class="gallery-row">
         <div class="gallery-image">
           <img :src="require(`~/assets/images/nature.jpg`)"/>
           <div class="gallery-image-text">nature</div>
@@ -28,7 +26,7 @@
           <img :src="require(`~/assets/images/products.jpg`)"/>
           <div class="gallery-image-text">products</div>
         </div>
-      </b-row>
+      </div>
     </b-container>
   </div>
 </template>
@@ -43,22 +41,29 @@ export default {
   #gallery {
     width: 100%;
     height: 600px;
-    margin-bottom: 40px;
   }
 
   .gallery-row {
-    padding-top: 56px;
+    padding: 56px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .gallery-image {
     margin-right: 10px;
+    margin-bottom: 10px;
     position: relative;
     height: 100%;
+    flex: 30%;
   }
 
   .gallery-image img {
     height: 241px;
-    width: 241px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
   }
 
   .gallery-image-text {
@@ -81,5 +86,15 @@ export default {
 
   .gallery-image:hover .gallery-image-text {
     opacity: 0;
+  }
+
+  @media screen and (max-width: 991px) {
+    #gallery {
+      height: 100%;
+    }
+
+    .gallery-image {
+      flex: 48%;
+    }
   }
 </style>

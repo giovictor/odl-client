@@ -1,9 +1,9 @@
 <template>
   <div id="about">
     <div class="backgroundObjects">
-      <background-object :src="require(`~/assets/images/fruits-and-veggies-1.png`)" bottom="0" left="0"></background-object>
-      <background-object :src="require(`~/assets/images/fruits-and-veggies-2.png`)" top="0" right="0"></background-object>
-      <background-object :src="require(`~/assets/images/veggie-bowl-2.png`)" bottom="35px" right="52px"></background-object>
+      <background-object id="fruits-and-veggies-1" :src="require(`~/assets/images/fruits-and-veggies-1.png`)" bottom="0" left="0"></background-object>
+      <background-object id="fruits-and-veggies-2" :src="require(`~/assets/images/fruits-and-veggies-2.png`)" top="0" right="0"></background-object>
+      <background-object id="veggie-bowl-2" :src="require(`~/assets/images/veggie-bowl-2.png`)" bottom="35px" right="52px"></background-object>
     </div>
     <b-container>
       <b-row align-v="center" align-h="center">
@@ -70,5 +70,35 @@ export default {
     letter-spacing: 0.05em;
     text-align: justify;
     line-height: 1.5em;
+  }
+
+  @media screen and (max-width: 1330px) {
+    #veggie-bowl-2 {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 1199px) {
+    #fruits-and-veggies-1 {
+      left: -10px !important;
+    }
+
+    #fruits-and-veggies-2 {
+      top: -25px !important;
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    #about h2 {
+      font-size: 22px;
+    }
+
+    #about h3 {
+      font-size: 18px;
+    }
+
+    #about p {
+      font-size: 14px;
+    }
   }
 </style>
