@@ -4,6 +4,8 @@
       <background-object id="fruits-and-veggies-1" :src="require(`~/assets/images/fruits-and-veggies-1.png`)" bottom="0" left="0"></background-object>
       <background-object id="fruits-and-veggies-2" :src="require(`~/assets/images/fruits-and-veggies-2.png`)" top="0" right="0"></background-object>
       <background-object id="veggie-bowl-2" :src="require(`~/assets/images/veggie-bowl-2.png`)" bottom="35px" right="52px"></background-object>
+      <background-object id="cherry-about" :src="require(`~/assets/images/cherry.png`)" top="0" right="0"></background-object>
+      <background-object id="strawberry-about" :src="require(`~/assets/images/strawberry.png`)" bottom="0" left="-20px"></background-object>
     </div>
     <b-container>
       <b-row align-v="center" align-h="center">
@@ -40,6 +42,10 @@ export default {
     height: 600px;
     position: relative;
     padding-top: 84px;
+  }
+
+  #strawberry-about, #cherry-about {
+    display: none;
   }
 
   #about section {
@@ -99,6 +105,27 @@ export default {
 
     #about p {
       font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    #fruits-and-veggies-1,  #fruits-and-veggies-2 {
+      display: none;
+    }
+
+    #strawberry-about, #cherry-about {
+      display: block;
+    }
+
+    #about h3 {
+      color: #f6961e;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    #about {
+      height: 100%;
+      padding-bottom: 84px;
     }
   }
 </style>

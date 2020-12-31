@@ -22,20 +22,21 @@
     <section>
       <b-container>
         <b-row align-v="center" align-h="center">
-          <b-col cols="5">
+          <b-col md="5" cols="12">
             <div class="quote">
-              <img id="upper-leaf-quote" src="~/assets/images/upper-leaf-quote.png"/>
-              <p>Fitter</p>
+              <p><img id="upper-leaf-quote" src="~/assets/images/upper-leaf-quote.png"/>Fitter</p>
               <p>Healthier</p>
-              <p>Happier.</p>
-              <img id="lower-leaf-quote" src="~/assets/images/lower-leaf-quote.png"/>
+              <p>Happier.<img id="lower-leaf-quote" src="~/assets/images/lower-leaf-quote.png"/></p>
             </div>
             <div class="description">
               <p>Get healthier in your everyday life.</p>
             </div>
-            <b-button pill class="cta" href="#" size="lg" v-scroll-to="'#contact'">Get In Touch</b-button>
+            <div class="ctaButtons">
+              <b-button pill class="cta getintouch" href="#" size="lg" v-scroll-to="'#contact'">Get In Touch</b-button>
+              <b-button pill class="cta ordernow" href="#" size="lg">Order Now</b-button>
+            </div>
           </b-col>
-          <b-col cols="4">
+          <b-col md="4" class="veggie-bowl">
             <img src="~/assets/images/veggie-bowl.png"/>
           </b-col>
         </b-row>
@@ -80,12 +81,12 @@ export default {
   .quote {
     font-size: 50px;
     text-transform: uppercase;
-    position: relative;
   }
 
   .quote p {
     margin: 0;
     font-family: 'Gretaros';
+    position: relative;
   }
 
   .quote p:nth-of-type(1), .quote p:nth-of-type(2) {
@@ -98,14 +99,14 @@ export default {
 
   #upper-leaf-quote {
     position: absolute;
-    left: -34px;
-    top: -14px;
+    top: -15px;
+    left: -33px;
   }
 
   #lower-leaf-quote {
     position: absolute;
-    top: 140px;
     left: 242px;
+    top: 0px;
   }
 
   .description p {
@@ -116,22 +117,41 @@ export default {
 
   .cta {
     text-transform: uppercase;
-    background-color: #f6961e;
-    border-color: #f6961e;
     font-size: 15px;
     letter-spacing: 0.24em;
     font-weight:700;
     padding: 10px 20px;
+    width: 194px;
   }
 
-  .cta:hover {
+  .getintouch {
+    background-color: #f6961e;
+    border-color: #f6961e;
+  }
+
+  .getintouch:hover {
     background-color: #89b83e;
     border-color: #89b83e;
+  }
+
+  .ordernow {
+    background-color: #89b83e;
+    border-color: #89b83e;
+  }
+
+  .ordernow:hover {
+    background-color: #f6961e;
+    border-color: #f6961e;
   }
 
   @media screen and (max-width: 991px) {
     #celery {
       left: 5% !important;
+    }
+
+    #herb {
+      left: -3px !important;
+      transform: rotate(45deg);
     }
 
     .quote {
@@ -143,8 +163,58 @@ export default {
     }
 
     #lower-leaf-quote {
-      top: 130px;
       left: 218px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    #home {
+      height: 100%;
+      padding-bottom: 63px;
+    }
+
+    .headerlogo {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+    }
+
+    .quote, .description {
+      text-align: center;
+    }
+
+    #upper-leaf-quote, #lower-leaf-quote { 
+      display:none;
+    }
+
+    .veggie-bowl {
+      display: none;
+    }
+
+    .ctaButtons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cta {
+      margin-left: 10px;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    .quote {
+      font-size: 40px;
+    }
+
+    #broccoli {
+      bottom: 184px !important;
+    }
+
+    .cta {
+      letter-spacing: normal;
+      padding: 10px 10px;
     }
   }
 </style>

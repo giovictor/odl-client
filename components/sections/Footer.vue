@@ -2,13 +2,13 @@
   <footer>
     <b-container>
       <b-row align-h="around">
-        <b-col cols="2">
+        <b-col md="2" cols="12">
           <img src="~/assets/images/odl-logo.png" class="footerlogo"/>
         </b-col>
-        <b-col cols="3">
+        <b-col md="3" sm="6" cols="6" class="footerMenu">
           <navbar mode="footer"></navbar>
         </b-col>
-        <b-col cols="3">
+        <b-col md="3" sm="6" cols="6" class="socialLinks">
           <p>Follow Us On:</p>
           <a href="https://www.facebook.com/orlandosveggies" target="_blank" class="h2 mr-1 socialLink"><b-icon icon="facebook"></b-icon></a>
           <a href="https://www.instagram.com/orlandosdeslegumes" target="_blank" class="h2 mr-1 socialLink"><b-icon icon="instagram"></b-icon></a>
@@ -58,5 +58,20 @@ export default {
 
   .socialLink:hover {
     color: #343a40;
+  }
+
+  @media screen and (max-width: 767px) {
+    footer {
+      height: 100%;
+    }
+
+    .footerlogo {
+      display: block;
+      margin: 20px auto;
+    }
+
+    .socialLinks {
+      text-align: right;
+    }
   }
 </style>

@@ -74,4 +74,10 @@ export default {
   .footerLink:hover {
     color: #ffffff;
   }
+
+  @media screen and (max-width: 575px) {
+    .headerLink {
+      font-size: 12px;
+    }
+  }
 </style>

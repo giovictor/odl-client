@@ -1,7 +1,7 @@
 <template>
   <div id="contact">
-    <div class="contactCol"></div>
-    <div class="contactCol contactForm">
+    <div class="contactBackground"></div>
+    <div class="contactForm">
       <b-container>
         <div cols="12" class="contactFormHeader">
           <p>Get in touch with Us</p>
@@ -154,7 +154,7 @@ export default {
     display: flex;
   }
 
-  .contactCol {
+  .contactBackground, .contactForm {
     flex: 50%;
   }
 
@@ -213,5 +213,29 @@ export default {
   input, textarea {
     font-size: 14px !important;
     background-color: #ebebeb !important;
+  }
+
+  @media screen and (max-width: 767px) {
+    #contact, .contactForm {
+      height: 100%;
+    }
+
+    .contactBackground {
+      flex: 30%;
+    }
+
+    .contactForm {
+      flex: 70%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .contactBackground {
+      display: none;
+    }
+
+    .contactForm {
+      flex: 100%;
+    }
   }
 </style>
