@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer id="footer">
     <b-container>
       <b-row align-h="around">
         <b-col md="2" cols="12">
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style>
-  footer {
+  #footer {
     background-color: #1e1c1c;
     color: #ffffff;
     width: 100%;
@@ -61,7 +61,7 @@ export default {
   }
 
   @media screen and (max-width: 767px) {
-    footer {
+    #footer {
       height: 100%;
     }
 

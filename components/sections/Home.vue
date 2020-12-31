@@ -33,7 +33,7 @@
             </div>
             <div class="ctaButtons">
               <b-button pill class="cta getintouch" href="#" size="lg" v-scroll-to="'#contact'">Get In Touch</b-button>
-              <b-button pill class="cta ordernow" href="#" size="lg">Order Now</b-button>
+              <b-button pill class="cta ordernow" href="#" size="lg" v-b-modal.orderNowModal>Order Now</b-button>
             </div>
           </b-col>
           <b-col md="4" class="veggie-bowl">
@@ -41,6 +41,7 @@
           </b-col>
         </b-row>
       </b-container>
+      <order-now-modal></order-now-modal>
     </section>
   </div>
 </template>
@@ -48,12 +49,14 @@
 <script>
 import BackgroundObject from '@/components/component/backgroundObject'
 import Navbar from '@/components/component/navbar'
+import OrderNowModal from '@/components/component/orderNowModal'
 
 export default {
   name: 'Home',
   components: {
     BackgroundObject,
-    Navbar
+    Navbar,
+    OrderNowModal
   }
 }
 </script>
@@ -129,19 +132,14 @@ export default {
     border-color: #f6961e;
   }
 
-  .getintouch:hover {
-    background-color: #89b83e;
-    border-color: #89b83e;
-  }
-
   .ordernow {
     background-color: #89b83e;
     border-color: #89b83e;
   }
 
-  .ordernow:hover {
-    background-color: #f6961e;
-    border-color: #f6961e;
+  .getintouch:hover, .ordernow:hover {
+    background-color: #545b62;
+    border-color: #545b62;
   }
 
   @media screen and (max-width: 991px) {
@@ -184,7 +182,7 @@ export default {
       text-align: center;
     }
 
-    #upper-leaf-quote, #lower-leaf-quote { 
+    #upper-leaf-quote, #lower-leaf-quote {
       display:none;
     }
 
