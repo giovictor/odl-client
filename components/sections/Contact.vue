@@ -12,32 +12,41 @@
             label="Name:"
           >
             <b-form-input
-              v-model="contactForm.name"
+              v-model="$v.contactForm.name.$model"
               type="text"
               name="name"
               placeholder="Your name or your business name"
               @input="clearMessage"
+              :state="validateInput('name')"
+              aria-describedby="nameError"
             ></b-form-input>
+            <b-form-invalid-feedback id="nameError">Name is required.</b-form-invalid-feedback>
           </b-form-group>
           <b-form-group
             label="Email:"
           >
             <b-form-input
-              v-model="contactForm.email"
+              v-model="$v.contactForm.email.$model"
               type="text"
               name="email"
               @input="clearMessage"
+              :state="validateInput('email')"
+              aria-describedby="emailError"
             ></b-form-input>
+            <b-form-invalid-feedback id="emailError">Email is required and must be valid.</b-form-invalid-feedback>
           </b-form-group>
           <b-form-group
             label="Contact Number:"
           >
             <b-form-input
-              v-model="contactForm.contact_no"
+              v-model="$v.contactForm.contact_no.$model"
               type="text"
               name="contact_no"
               @input="clearMessage"
+              :state="validateInput('contact_no')"
+              aria-describedby="contactNoError"
             ></b-form-input>
+            <b-form-invalid-feedback id="contactNoError">Contact number is required.</b-form-invalid-feedback>
           </b-form-group>
           <b-form-group
             label="Preferred mode of communication:"
@@ -45,26 +54,34 @@
           >
             <b-form-radio-group
               id="radio-group-1"
-              v-model="contactForm.preferred_mode_of_communication"
-              :options="preferred_mode_of_communications"
+              v-model="$v.contactForm.mode_of_communication.$model"
+              :options="mode_of_communications"
               :aria-describedby="ariaDescribedby"
               name="preferred_mode_of_communication"
               @change="clearMessage"
-            ></b-form-radio-group>
+              :state="validateInput('mode_of_communication')"
+            >
+              <b-form-invalid-feedback :state="validateInput('mode_of_communication')">Please choose a preferred mode of communication.</b-form-invalid-feedback>
+            </b-form-radio-group>
           </b-form-group>
           <b-form-group
             label="Message:"
           >
             <b-form-textarea
-              v-model="contactForm.message"
+              v-model="$v.contactForm.message.$model"
               rows="3"
               max-rows="6"
               name="message"
               @input="clearMessage"
+              :state="validateInput('message')"
+              aria-describedby="messageError"
             ></b-form-textarea>
+            <b-form-invalid-feedback id="messageError">Message is required.</b-form-invalid-feedback>
           </b-form-group>
-          <div class="messageAndButton" :class="[contactFormMessage ? 'space-between' : 'flex-end']">
+          <div class="contactFormMessage">
             <span v-if="contactFormMessage" :class="'text-'+contactFormMessage.color">{{contactFormMessage.message}}</span>
+          </div>
+          <div class="contactFormButton">
             <b-button type="submit" class="sendBtn" pill>
               <b-icon v-if="isSubmitting" icon="arrow-clockwise" animation="spin"></b-icon>
               <span v-else>Send</span>
@@ -78,6 +95,7 @@
 
 <script>
 import { BIcon, BIconArrowClockwise } from 'bootstrap-vue'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   name: 'Contact',
@@ -91,10 +109,10 @@ export default {
         name: '',
         email: '',
         contact_no: '',
-        preferred_mode_of_communication: 'Phone',
+        mode_of_communication: 'Phone',
         message: ''
       },
-      preferred_mode_of_communications: [
+      mode_of_communications: [
         { text: 'Phone', value: 'Phone' },
         { text: 'Email', value: 'Email' }
       ],
@@ -102,12 +120,20 @@ export default {
       isSubmitting: false
     }
   },
-  computed: {
-    subject() {
-      return `${this.contactForm.name} sent you a message for Orlando's Des Legumes`
+  validations: {
+    contactForm: {
+      name: { required },
+      email: { required, email },
+      contact_no: { required },
+      mode_of_communication: { required },
+      message: { required }
     }
   },
   methods: {
+    validateInput(input) {
+      const { $dirty, $error } = this.$v.contactForm[input]
+      return $dirty ? !$error : null
+    },
     encode(data) {
       return Object.keys(data).map(key =>
         `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
@@ -118,7 +144,7 @@ export default {
     },
     resetFields() {
       Object.keys(this.contactForm).map(key => {
-        if(key != 'preferred_mode_of_communication') {
+        if(key != 'mode_of_communication') {
           this.contactForm[key] = ''
         } else {
           this.contactForm[key] = 'Phone'
@@ -126,18 +152,22 @@ export default {
       })
     },
     sendInquiry() {
-      this.isSubmitting = true
-      this.$axios.post('/contact', this.encode({ 'form-name': 'inquiries', 'subject': this.subject, ...this.contactForm }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded'  } })
-      .then(() => {
-        this.isSubmitting = false
-        this.contactFormMessage = { color: 'success', message: 'Message was submitted. We will get back to you on your preferred mode of communication. Thank you for reaching out!' }
-        this.resetFields()
-      })
-      .catch(err => {
-        console.log(err)
-        this.isSubmitting = false
-        this.contactFormMessage = { color: 'danger', message: 'There was an error submitting your message.' }
-      })
+      if(!this.$v.contactForm.$invalid) {
+        this.isSubmitting = true
+        this.$axios.post('/contact', this.encode({ 'form-name': 'inquiries', ...this.contactForm }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded'  } })
+        .then(() => {
+          this.isSubmitting = false
+          this.contactFormMessage = { color: 'success', message: 'Message was submitted. We will get back to you on your preferred mode of communication. Thank you for reaching out!' }
+          this.resetFields()
+        })
+        .catch(err => {
+          console.log(err)
+          this.isSubmitting = false
+          this.contactFormMessage = { color: 'danger', message: 'There was an error submitting your message.' }
+        })
+      } else {
+        this.$v.contactForm.$touch()
+      }
     }
   }
 }
@@ -145,7 +175,7 @@ export default {
 
 <style>
   #contact {
-    height: 600px;
+    height: 100%;
     width: 100%;
     background-image: url('../../assets/images/contact-background.jpg');
     background-size: cover;
@@ -160,7 +190,7 @@ export default {
 
   .contactForm {
     background-color: #ffffff;
-    height: 600px;
+    height: 100%;
     border-bottom: 16px solid #f26522;
     padding: 20px 20px;
   }
@@ -178,21 +208,20 @@ export default {
     font-weight: 700;
   }
 
-  .messageAndButton {
+  .contactFormMessage {
     display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
   }
 
-  .messageAndButton span {
+  .contactFormMessage span {
     font-size: 13px;
     font-weight: 600;
   }
 
-  .flex-end {
+  .contactFormButton {
+    display: flex;
     justify-content: flex-end;
-  }
-
-  .space-between {
-    justify-content: space-between;
   }
 
   .sendBtn {
@@ -215,11 +244,11 @@ export default {
     background-color: #ebebeb !important;
   }
 
-  @media screen and (max-width: 767px) {
-    #contact, .contactForm {
-      height: 100%;
-    }
+  .invalid-feedback {
+    font-weight: 600;
+  }
 
+  @media screen and (max-width: 767px) {
     .contactBackground {
       flex: 30%;
     }

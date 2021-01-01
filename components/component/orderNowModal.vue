@@ -3,7 +3,7 @@
     <div class="orderNowBackground"></div>
     <div class="orderNow">
       <img src="~/assets/images/odl-logo.png" class="modalLogo"/>
-      <p>Our e-commerce website is still a work in progress. You can view or download our pricelist here and send us a message to order.  Thank you!</p>
+      <p>Our e-commerce website is still a work in progress. You can view or download our price list here and send us a message to order. Thank you!</p>
       <div class="orderNowBtn">
         <b-button pill href="/files/odl-pricelist.pdf" download class="pricelistBtn" size="sm">Download Pricelist <b-icon icon="download"></b-icon></b-button>
         <b-button pill href="/files/odl-pricelist.pdf" target="_blank" class="pricelistBtn" size="sm">View Pricelist <b-icon icon="arrow-right-square"></b-icon></b-button>
