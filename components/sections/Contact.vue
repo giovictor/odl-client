@@ -81,7 +81,7 @@
             <span v-if="contactFormMessage" :class="'text-'+contactFormMessage.color">{{contactFormMessage.message}}</span>
           </div>
           <div class="contactFormButton">
-            <b-button type="submit" class="sendBtn" pill>
+            <b-button type="submit" class="sendBtn" pill :disabled="isSubmitting">
               <b-icon v-if="isSubmitting" icon="arrow-clockwise" animation="spin"></b-icon>
               <span v-else>Send</span>
             </b-button>
