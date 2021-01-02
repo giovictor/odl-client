@@ -6,8 +6,7 @@
         <div cols="12" class="contactFormHeader">
           <p>Get in touch with Us</p>
         </div>
-        <b-form name="inquiries" @submit.prevent="sendInquiry" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" action="/contact">
-          <input type="hidden" name="form-name" value="inquiries" />
+        <b-form @submit.prevent="sendInquiry">
           <b-form-group
             label="Name:"
           >
@@ -54,14 +53,14 @@
           >
             <b-form-radio-group
               id="radio-group-1"
-              v-model="$v.contactForm.mode_of_communication.$model"
-              :options="mode_of_communications"
+              v-model="$v.contactForm.preferred_mode_of_communication.$model"
+              :options="preferred_mode_of_communications"
               :aria-describedby="ariaDescribedby"
               name="preferred_mode_of_communication"
               @change="clearMessage"
-              :state="validateInput('mode_of_communication')"
+              :state="validateInput('preferred_mode_of_communication')"
             >
-              <b-form-invalid-feedback :state="validateInput('mode_of_communication')">Please choose a preferred mode of communication.</b-form-invalid-feedback>
+              <b-form-invalid-feedback :state="validateInput('preferred_mode_of_communication')">Please choose a preferred mode of communication.</b-form-invalid-feedback>
             </b-form-radio-group>
           </b-form-group>
           <b-form-group
@@ -96,6 +95,7 @@
 <script>
 import { BIcon, BIconArrowClockwise } from 'bootstrap-vue'
 import { required, email } from 'vuelidate/lib/validators'
+import emailjs from 'emailjs-com'
 
 export default {
   name: 'Contact',
@@ -109,10 +109,10 @@ export default {
         name: '',
         email: '',
         contact_no: '',
-        mode_of_communication: 'Phone',
+        preferred_mode_of_communication: 'Phone',
         message: ''
       },
-      mode_of_communications: [
+      preferred_mode_of_communications: [
         { text: 'Phone', value: 'Phone' },
         { text: 'Email', value: 'Email' }
       ],
@@ -125,7 +125,7 @@ export default {
       name: { required },
       email: { required, email },
       contact_no: { required },
-      mode_of_communication: { required },
+      preferred_mode_of_communication: { required },
       message: { required }
     }
   },
@@ -134,33 +134,31 @@ export default {
       const { $dirty, $error } = this.$v.contactForm[input]
       return $dirty ? !$error : null
     },
-    encode(data) {
-      return Object.keys(data).map(key =>
-        `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-      ).join('&')
-    },
     clearMessage() {
       this.contactFormMessage = null
     },
     resetFields() {
       Object.keys(this.contactForm).map(key => {
-        if(key != 'mode_of_communication') {
+        if(key != 'preferred_mode_of_communication') {
           this.contactForm[key] = ''
         } else {
           this.contactForm[key] = 'Phone'
         }
       })
+
+      this.$nextTick(() => {
+        this.$v.$reset();
+      });
     },
     sendInquiry() {
       if(!this.$v.contactForm.$invalid) {
         this.isSubmitting = true
-        this.$axios.post('/contact', this.encode({ 'form-name': 'inquiries', ...this.contactForm }), { headers: { 'Content-Type': 'application/x-www-form-urlencoded'  } })
+        emailjs.send(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, this.contactForm, process.env.EMAILJS_USER_ID)
         .then(() => {
           this.isSubmitting = false
           this.contactFormMessage = { color: 'success', message: 'Message was submitted. We will get back to you on your preferred mode of communication. Thank you for reaching out!' }
           this.resetFields()
-        })
-        .catch(err => {
+        }, (err) => {
           console.log(err)
           this.isSubmitting = false
           this.contactFormMessage = { color: 'danger', message: 'There was an error submitting your message.' }
