@@ -165,6 +165,7 @@ export default {
         })
       } else {
         this.$v.contactForm.$touch()
+        this.clearMessage()
       }
     }
   }
