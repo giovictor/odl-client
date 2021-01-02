@@ -166,9 +166,6 @@ export default {
       } else {
         this.$v.contactForm.$touch()
       }
-      console.log(process.env.emailjsServiceId)
-      console.log(process.env.emailjsTemplateId)
-      console.log(process.env.emailjsUserId)
     }
   }
 }
