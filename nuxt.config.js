@@ -73,5 +73,10 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+  },
+  env: {
+    emailjsServiceId: process.env.EMAILJS_SERVICE_ID,
+    emailjsTemplateId: process.env.EMAILJS_TEMPLATE_ID,
+    emailjsUserId: process.env.EMAILJS_USER_ID
   }
 }

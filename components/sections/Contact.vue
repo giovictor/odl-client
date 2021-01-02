@@ -153,7 +153,7 @@ export default {
     sendInquiry() {
       if(!this.$v.contactForm.$invalid) {
         this.isSubmitting = true
-        emailjs.send(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, this.contactForm, process.env.EMAILJS_USER_ID)
+        emailjs.send(process.env.emailjsServiceId, process.env.emailjsTemplateId, this.contactForm, process.env.emailjsUserId)
         .then(() => {
           this.isSubmitting = false
           this.contactFormMessage = { color: 'success', message: 'Message was submitted. We will get back to you on your preferred mode of communication. Thank you for reaching out!' }
@@ -166,9 +166,9 @@ export default {
       } else {
         this.$v.contactForm.$touch()
       }
-      console.log(process.env.EMAILJS_SERVICE_ID)
-      console.log(process.env.EMAILJS_TEMPLATE_ID)
-      console.log(process.env.EMAILJS_USER_ID)
+      console.log(process.env.emailjsServiceId)
+      console.log(process.env.emailjsTemplateId)
+      console.log(process.env.emailjsUserId)
     }
   }
 }
