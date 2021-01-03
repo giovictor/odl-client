@@ -19,8 +19,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
-    ],
+      { hid: 'description', name: 'description', content: 'Vegetable supplier from the roots of Northern Samar. A farmers traders and restaurant supplier of vegetables, eggs, and rice.' },
+      { hid: 'apple-mobile-web-app-title', name: 'apple-mobile-web-app-title', content: 'Orlando\'s Des Legumes.' },
+      { hid: 'og:title', name: 'og:title', content: 'Orlando\'s Des Legumes.' },
+      { hid: 'og:site_name', name: 'og:site_name', content: 'Orlando\'s Des Legumes.' },
+      { hid: 'og:description', name: 'og:description', content: 'Vegetable supplier from the roots of Northern Samar. A farmers traders and restaurant supplier of vegetables, eggs, and rice.' },    ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap' },
