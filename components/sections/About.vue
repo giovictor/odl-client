@@ -13,11 +13,11 @@
           <h2>About Us</h2>
           <section>
             <h3>Our brief history</h3>
-            <p>Orlando’s Des Legumes was named after our father. “Des Legumes” was a french word that means “Vegetables” so that we decided to combined it next to our father’s name.</p>
+            <p>Orlando’s Des Legumes is named after our father. "Des Legumes" is a french word that means "Vegetables" that we combined it next to our father’s name.</p>
           </section>
           <section>
             <h3>Who we are & what we do</h3>
-            <p>We are from Apolonio’s family and we are a vegetable supplier from the roots of Northern Samar and was given an opportunity to be part of the Province of Benguet. We are farmers traders and became a restaurant supplier of vegetables, eggs, and rice.</p>
+            <p>We are from Apolonio’s family and we are a vegetable supplier from the roots of Northern Samar and was given the opportunity to be part of the Province of Benguet. We are farmers traders and became a restaurant supplier of vegetables, fruits, eggs, and rice.</p>
           </section>
         </b-col>
       </b-row>
