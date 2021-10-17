@@ -33,7 +33,13 @@
 
 <script>
 export default {
-  name: 'Gallery'
+  name: 'Gallery',
+  async asyncData({ $content }) {
+    let gallery = await $content('gallery').fetch()
+    return {
+      gallery
+    }
+  }
 }
 </script>
 
