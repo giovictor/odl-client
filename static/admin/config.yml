@@ -1,0 +1,28 @@
+backend:
+  name: github
+  repo: giovictor/odl-client
+  branch: master
+
+publish_mode: editorial_workflow
+
+media_folder: static/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: "gallery"
+    label: "Gallery"
+    folder: "content/gallery"
+    format: 'frontmatter'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string', required: false }
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        choose_url: true
+        media_library:
+          config:
+            multiple: true
+
+
