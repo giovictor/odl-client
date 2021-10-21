@@ -3,7 +3,7 @@
     <b-container>
       <div class="gallery-images">
         <vue-slick-carousel v-bind="carousel" v-if="galleryImages.length != 0">
-          <div class="gallery-image" v-for="gallery in galleryImages" :key="gallery.title">
+          <div class="gallery-image" v-for="gallery in galleryImages" :key="gallery.image">
             <img :src="require(`~/static${gallery.image}`)"/>
           </div>
         </vue-slick-carousel>
