@@ -1,43 +1,52 @@
 <template>
   <div id="gallery">
     <b-container>
-      <div class="gallery-row">
-        <div class="gallery-image">
-          <img :src="require(`~/assets/images/delivery.jpg`)"/>
-          <div class="gallery-image-text">delivery</div>
-        </div>
-        <div class="gallery-image">
-          <img :src="require(`~/assets/images/farmer.jpg`)"/>
-          <div class="gallery-image-text">farmer</div>
-        </div>
-        <div class="gallery-image">
-          <img :src="require(`~/assets/images/farm.jpg`)"/>
-          <div class="gallery-image-text">farm</div>
-        </div>
-        <div class="gallery-image">
-          <img :src="require(`~/assets/images/nature.jpg`)"/>
-          <div class="gallery-image-text">nature</div>
-        </div>
-        <div class="gallery-image">
-          <img :src="require(`~/assets/images/landscape.jpg`)"/>
-          <div class="gallery-image-text">landscape</div>
-        </div>
-        <div class="gallery-image">
-          <img :src="require(`~/assets/images/products.jpg`)"/>
-          <div class="gallery-image-text">products</div>
-        </div>
+      <div class="gallery-images">
+        <vue-slick-carousel v-bind="carousel" v-if="galleryImages.length != 0">
+          <div class="gallery-image" v-for="gallery in galleryImages" :key="gallery.title">
+            <img :src="require(`~/static${gallery.image}`)"/>
+          </div>
+        </vue-slick-carousel>
       </div>
     </b-container>
   </div>
 </template>
 
 <script>
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+
 export default {
   name: 'Gallery',
-  async asyncData({ $content }) {
-    let gallery = await $content('gallery').fetch()
+  components: {
+    VueSlickCarousel
+  },
+  data() {
     return {
-      gallery
+      galleryImages: [],
+      carousel: {
+        arrows: true,
+        dots: true,
+        infinite: true,
+        rows: 2,
+        slidesToShow: 3,
+        slidesPerRow: 1,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnDotsHover: true,
+        pauseOnFocus: true,
+        pauseOnHover: true
+      }
+    }
+  },
+  mounted() {
+    this.getGalleryImages()
+  },
+  methods: {
+    async getGalleryImages() {
+      this.galleryImages = await this.$content('gallery').fetch()
     }
   }
 }
@@ -49,58 +58,23 @@ export default {
     height: 600px;
   }
 
-  .gallery-row {
+  .gallery-images {
     padding: 56px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .gallery-image {
-    margin-right: 10px;
-    margin-bottom: 10px;
-    position: relative;
-    height: 100%;
-    flex: 30%;
   }
 
   .gallery-image img {
     height: 241px;
     width: 100%;
-    display: block;
-    margin: 0 auto;
+    padding: 5px;
   }
 
-  .gallery-image-text {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    background-color: #454545;
-    opacity: 0.9;
-    text-transform: uppercase;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 21px;
-    letter-spacing: 0.2em;
-    transition: all 0.4s ease-in-out;
-  }
-
-  .gallery-image:hover .gallery-image-text {
-    opacity: 0;
+  .slick-prev::before, .slick-next::before {
+    color: #1e1c1c;
   }
 
   @media screen and (max-width: 991px) {
     #gallery {
       height: 100%;
-    }
-
-    .gallery-image {
-      flex: 48%;
     }
   }
 </style>
