@@ -99,7 +99,7 @@ export default {
   }
 
   .slick-prev::before, .slick-next::before {
-    color: #1e1c1c;
+    color: #1e1c1c !important;
   }
 
   @media screen and (max-width: 991px) {
