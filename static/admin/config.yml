@@ -15,6 +15,7 @@ collections:
     format: 'frontmatter'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    identifier_field: image
     fields:
       - label: "Image"
         name: "image"
