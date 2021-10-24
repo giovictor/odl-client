@@ -3,23 +3,23 @@
     <div class="orderNowBackground"></div>
     <div class="orderNow">
       <img src="~/assets/images/odl-logo.png" class="modalLogo"/>
-      <p>Our e-commerce website is still a work in progress. You can view or download our price list here and send us a message to order. Thank you!</p>
-      <div class="orderNowBtn">
-        <b-button pill href="/files/odl-pricelist.pdf" download class="pricelistBtn" size="sm">Download Pricelist <b-icon icon="download"></b-icon></b-button>
+      <p>Our e-commerce website is still a work in progress. You can order directly thru an order form by clicking <span class="orderBtnGuide">"Order Now"</span> below. You can also view or download our price list by clicking <span class="orderBtnGuide">"View Pricelist"</span> below. Thank you!</p>
+      <div class="orderNowButtons">
         <b-button pill href="/files/odl-pricelist.pdf" target="_blank" class="pricelistBtn" size="sm">View Pricelist <b-icon icon="arrow-right-square"></b-icon></b-button>
+        <b-button pill href="https://form.jotform.com/212954127175053" target="_blank" class="pricelistBtn orderNowBtn" size="sm">Order Now <b-icon icon="cart-4"></b-icon></b-button>
       </div>
     </div>
   </b-modal>
 </template>
 
 <script>
-import { BIcon, BIconDownload, BIconArrowRightSquare } from 'bootstrap-vue'
+import { BIcon, BIconCart4, BIconArrowRightSquare } from 'bootstrap-vue'
 
 export default {
   name: 'OrderNowModal',
   components: {
     BIcon,
-    BIconDownload,
+    BIconCart4,
     BIconArrowRightSquare
   }
 }
@@ -65,10 +65,14 @@ export default {
     margin-bottom: 20px;
   }
 
-  .orderNowBtn {
+  .orderNowButtons {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+  }
+
+  .orderBtnGuide {
+    font-weight: 600;
   }
 
   .pricelistBtn {
@@ -83,6 +87,11 @@ export default {
     width: 197px;
   }
 
+  .orderNowBtn {
+    background-color: #89b83e;
+    border-color: #89b83e;
+  }
+
   @media screen and (max-width: 991px) {
     .orderNowBackground {
       display: none;
@@ -92,7 +101,7 @@ export default {
       padding: 30px 20px;
     }
 
-    .orderNowBtn {
+    .orderNowButtons {
       justify-content: center;
     }
 
@@ -102,7 +111,7 @@ export default {
   }
 
   @media screen and (max-width: 480px) {
-    .orderNowBtn {
+    .orderNowButtons {
       flex-direction: column;
     }
 
